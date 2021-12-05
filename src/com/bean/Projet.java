@@ -27,6 +27,7 @@ public class Projet implements Serializable{
 	Float budget;
 	String lieu;
 	String description;
+	String avancement;
 	int id_asso;
 	@Lob
 	byte[] image;
@@ -37,6 +38,12 @@ public class Projet implements Serializable{
 	}
 	public void setId_projet(int id_projet) {
 		this.id_projet = id_projet;
+	}
+	public String getAvancement() {
+		return avancement;
+	}
+	public void setAvancement(String avancement) {
+		this.avancement = avancement;
 	}
 	public String getNom() {
 		return nom;

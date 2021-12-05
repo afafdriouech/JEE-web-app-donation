@@ -89,8 +89,8 @@
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Projets</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
 		                        <li>
-		                        <form action="ProjetServlet" method="POST">
-		            			&emsp;<button value="AfficherProjet" name="afficherProjet" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:grey;border: none;width:150px;height:50px;font-size: 17px;">Liste projets</button>
+		                        <form action="ProjetServlet" method="get">
+		            			&emsp;<button value="Projets" name="Projets" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:grey;border: none;width:150px;height:50px;font-size: 17px;">Liste projets</button>
 		       					 </form>
 		       					</li>
                                 <li><a title="#" href="add_projet.jsp"><span class="mini-sub-pro">Ajouter projet</span></a></li>
@@ -178,7 +178,8 @@
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                             <img src="img/product/pro4.jpg" alt="" />
-                                                            <span class="admin-name">Association</span>
+                                                            <% int id_a=(Integer)session.getAttribute("id");%>
+                                                            <span class="admin-name"><%=id_a%></span>
                                                             <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                         </a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -317,7 +318,7 @@
                         <div class="product-status-wrap">
                             <h4>Liste des projets</h4>
                             
-                             <% int id=(Integer)session.getAttribute("id");  %><%--  <%=id %> --%>
+                             <% int id=(Integer)session.getAttribute("id");%><%--  <%=id %> --%>
                             
                             <div class="asset-inner">
                                 <table>
@@ -329,7 +330,7 @@
                                         <th>Date d'écheance</th>
                                         <th>Budget</th> 
                                         <th>Lieu</th> 
-                                        <th>Description</th>
+                                        <th>Image</th>
                                         <th>Setting</th>   
                                     </tr>
                                     <c:forEach items="${projetList}" var="p">
@@ -342,7 +343,7 @@
                                         <td>${p.date_echeance}</td>
                                         <td>${p.budget}</td>
                                         <td>${p.lieu}</td>
-                                        <td>${p.description}</td>
+                                        <td><img src="ProjetImage?id=${p.id_projet}" width="60px" height="60px"/> </td>
                                         
                                         <td>
                                          <form action="ProjetServlet" method="POST">

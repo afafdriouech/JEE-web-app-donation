@@ -37,16 +37,16 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="home.jsp" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="donate_form.jsp" class="nav-link">Donate</a></li>
+          <li class="nav-item"><a href="homeServlet" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="donate_form.jsp" class="nav-link">Donate</a></li>
           <li class="nav-item">
           <form action="AssociationServlet" method="POST">
-            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:white;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Association</button>         
+            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Associations</button>         
           </form>
           </li>
           <li class="nav-item">
           <form action="ProjetServlet" method="POST">
-            <button value="AfficherProjet" name="afficherProjets" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:white;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Projets</button>         
+            <button value="AfficherProjet" name="afficherProjets" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Projets</button>         
           </form>
           </li>
          
@@ -106,7 +106,7 @@
         <div class="col-6 ">
           <div class="post-entry">
             <a href="blog-single.html" class="mb-3 img-wrap">
-              <img src="images/img_4.jpg" alt="Image placeholder" class="img-fluid">
+              <img src="ProjetImage?id=${p.id_projet}" alt="Image placeholder" class="img-fluid">
             </a>
           </div>
           </div>

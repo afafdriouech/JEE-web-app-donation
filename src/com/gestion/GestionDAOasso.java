@@ -49,6 +49,10 @@ public class GestionDAOasso  implements DAOassociation{
         }
         return 0;
     }
+	
+	
+	
+	
 	public List<Association> AfficherAssociations(){		
 		List<Association> associationList = new ArrayList();
 		Session session = HibernateUtil.getSessionFactory().openSession();		

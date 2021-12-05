@@ -36,17 +36,17 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-           <li class="nav-item"><a href="home.jsp" class="nav-link">Home</a></li>
+           <li class="nav-item"><a href="homeServlet" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="how-it-works.html" class="nav-link">How It Works</a></li>
           <li class="nav-item active"><a href="donate_form.jsp" class="nav-link">Donate</a></li>
           <li class="nav-item">
           <form action="AssociationServlet" method="POST">
-            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:black;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Association</button>         
+            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Associations</button>         
           </form>
           </li>
          <form action="AssociationServlet" method="POST">
          
-            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:black;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Favorites</button>         
+            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Favorites</button>         
           </form>
           </li>
          <!--  <li class="nav-item"><a href="about.html" class="nav-link">About</a></li> -->
@@ -115,7 +115,7 @@
                 <input type="text" class="form-control py-2" name="montant" id="budget" placeholder="Enter Somme de donation">
               </div>
                <div class="form-group">
-              	<label  for="cars">Choisir un devise:</label>
+              	<label  for="cars">Choisir une devise:</label>
 				<select id="devise" name="deviselist" form="don">
 				  <option name="devise" value="mad">MAD</option>
 				  <option name="devise" value="euro">EURO</option>

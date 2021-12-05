@@ -6,6 +6,12 @@
 <html lang="en">
   <head>
     <title>Donation App</title>
+
+        <!-- ========rating======== -->
+    <link rel="stylesheet" href="css/rating.css" type="text/css" title="Rating CSS">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+       
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/x-icon" href="images/mainlogo.png">
@@ -24,7 +30,35 @@
     <link rel="stylesheet" href="css/css/fancybox.min.css">
 
     <link rel="stylesheet" href="css/css/bootstrap.css">
-    <link rel="stylesheet" href="css/css/style.css">
+    <link rel="stylesheet" href="css/css/style.css">    
+    
+
+ <style type="text/css">
+  .stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+ 
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+ 
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;  
+  width: 0;
+}
+ 
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
+  </style>  
+    
 
   </head>
   <body>
@@ -38,16 +72,16 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="home.jsp" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="donate_form.jsp" class="nav-link">Donate</a></li>
+          <li class="nav-item"><a href="homeServlet" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="donate_form.jsp" class="nav-link">Donate</a></li>
           <li class="nav-item">
           <form action="AssociationServlet" method="POST">
-            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:white;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Association</button>         
+            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Associations</button>         
           </form>
           </li>
           <li class="nav-item">
-          <form action="ProjetServlet" method="POST">
-            <button value="AfficherProjet" name="afficherProjets" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:white;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Projets</button>         
+          <form action="ProjetServlet" method="get">
+            <button name="afficherProjets" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Projets</button>         
           </form>
           </li>
         
@@ -114,6 +148,11 @@
             <div class="donate-info">
               <h2>${a.nom}</h2>
               <span class="time d-block mb-3">${a.email}</span>
+              <span class="time d-block mb-3">${a.nbr_etoiles}</span>              
+              <div class="stars-outer">
+  				<div class="stars-inner" style="width: ${a.nbr_etoiles}%"></div>
+		      </div>
+		    
               <form action="AssociationServlet" method="POST">
               <input name="id_asso" type="hidden" class="form-control" value="${a.id_asso}">
             <button value="AfficherAssociation" name="afficherUneAsso" type="submit" data-toggle="tooltip" title="" style="background:#e3c652;color:white;border: none;width:100px;height:40px;font-size: 15px;margin-top:15px;cursor: pointer;">View More</button>         

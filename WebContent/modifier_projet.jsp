@@ -92,7 +92,7 @@
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li>
 		                        <form action="ProjetServlet" method="POST">
-		            			&emsp;<button value="AfficherProjet" name="afficherProjet" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:grey;border: none;width:150px;height:50px;font-size: 17px;">Liste projets</button>
+		            			&emsp;<button value="Projets" name="Projets" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:grey;border: none;width:150px;height:50px;font-size: 17px;">Liste projets</button>
 		       					 </form>
 		       					</li>
                                 <li><a title="Add Courses" href="add_project.jsp"><span class="mini-sub-pro">Ajouter projet</span></a></li>

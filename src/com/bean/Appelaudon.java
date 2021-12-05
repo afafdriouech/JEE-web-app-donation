@@ -12,8 +12,7 @@ import javax.persistence.Id;
 @Entity
 public class Appelaudon implements Serializable{
 	@Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	int id_appel;
 	String nom;
 	String  date_lancement;

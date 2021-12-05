@@ -26,7 +26,7 @@ public class DonappelServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         if(request.getParameter("afficherDonappel")!=null){
+         if(request.getParameter("afficherDonappel")!=null){ 
         	 try {
         		 List<Donappel> donappelList = new ArrayList();
                  donappelList = gs.AfficherDonappels();

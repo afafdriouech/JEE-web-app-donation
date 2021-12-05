@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.lang.Math" %>     
+    
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Donation App</title>
+        <!-- ========rating======== -->
+    <link rel="stylesheet" href="css/rating.css" type="text/css" title="Rating CSS">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/x-icon" href="images/mainlogo.png">
@@ -24,6 +30,36 @@
 
     <link rel="stylesheet" href="css/css/bootstrap.css">
     <link rel="stylesheet" href="css/css/style.css">
+    
+<% Double starPercentageRounded =(double)request.getAttribute("nbr_etoiles");%>
+
+  <style type="text/css">
+  .stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+ 
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+ 
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: <%=starPercentageRounded%>%;
+}
+ 
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
+  </style>  
+
+    
 
   </head>
   <body>
@@ -37,19 +73,22 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="home.jsp" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="donate_form.jsp" class="nav-link">Donate</a></li>
+          <li class="nav-item"><a href="homeServlet" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="donate_form.jsp" class="nav-link">Donate</a></li>
           <li class="nav-item">
           <form action="AssociationServlet" method="POST">
-            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:white;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Association</button>         
+            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Associations</button>         
           </form>
           </li>
+          <%
+          if(null != session.getAttribute("id_d")){
+        	  
+              %>
          <form action="AssociationServlet" method="POST">
-         
-            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:white;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Favorites</button>         
+            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Favorites</button>         
           </form>
           </li>
-         <!--  <li class="nav-item"><a href="about.html" class="nav-link">About</a></li> -->
+         <% } %>
           
           
           <%
@@ -107,20 +146,21 @@
             <span class="date mb-4 d-block text-muted">Ville: Casablanca</span>
             <span class="date mb-4 d-block text-muted">Adresse: Maarif boulvard Anfa</span>
             <p>In order for the Review Process to be initiated, charities raise a question with their analyst, which is then reviewed by the appropriate analyst and at least one additional senior member of the analyst team. This review by two members of the Charity Navigator team is to get several perspectives on the matter at hand</p>
-           
+            <div class="stars-outer">
+  			<div class="stars-inner"></div>
+		    </div>
             
           </div>
         </div>
         
-        <hr>
-        
-        
-         
+        <hr>       
       </div>
     </div>
-  </div> <!-- .section -->
+  </div> 
+  <!-- .section -->
+  
   <h2  style="color: red;margin-left: 35%">Commentaires De Nos Donateurs <img src="images/heart2.png" alt="Image placeholder" class="img-fluid"></h2>
-        
+         
    <div class="site-section bg-light">
     <div class="container">
       <div class="row">
@@ -186,7 +226,7 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-
+	   
   <script src="js/js/jquery.min.js"></script>
   <script src="js/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/js/popper.min.js"></script>
@@ -203,6 +243,7 @@
   <script src="js/js/aos.js"></script>
   <script src="js/js/jquery.animateNumber.min.js"></script>
   <script src="js/js/main.js"></script>
+  
     
   </body>
 </html>

@@ -16,12 +16,14 @@ import com.bean.Donateur;
 import com.bean.Projet;
 import com.crud.DAOassociation;
 import com.gestion.GestionDAOasso;
+import com.gestion.GestionDAOrating;
 
 public class AssociationServlet extends HttpServlet{
 	
 	Association a = new Association();
     GestionDAOasso gs = new GestionDAOasso();
     DAOassociation a_dao;
+    GestionDAOrating rt=new GestionDAOrating();
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,6 +46,9 @@ public class AssociationServlet extends HttpServlet{
              assoList = gs.AfficherUneAssociation(id);
              request.setAttribute("assoList", assoList);
              request.setAttribute("id_ass", id);
+             Double res=rt.calculer_rating(id);
+             request.setAttribute("nbr_etoiles", res);
+
              RequestDispatcher rd = request.getRequestDispatcher("detail_asso.jsp");
              rd.forward(request, response);
          }

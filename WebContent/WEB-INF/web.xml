@@ -32,6 +32,12 @@
         <servlet-class>com.controller.ProjetServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>homeServlet</servlet-name>
+        <servlet-class>com.controller.homeServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
         <servlet-name>SendMail</servlet-name>
         <servlet-class>com.controller.SendMail</servlet-class>
     </servlet>
@@ -68,6 +74,11 @@
         <servlet-name>ProjetServlet</servlet-name>
         <url-pattern>/ProjetServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>homeServlet</servlet-name>
+        <url-pattern>/homeServlet</url-pattern>
+    </servlet-mapping>
+
     <session-config>
     
         <session-timeout>
@@ -76,7 +87,7 @@
     </session-config>
     
     <welcome-file-list>
-        <welcome-file>AjoutDonateur.jsp</welcome-file>
+        <welcome-file>homeServlet</welcome-file>
     </welcome-file-list>
     
     <context-param>

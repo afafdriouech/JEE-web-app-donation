@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.lang.Math" %>     
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Donation App</title>
+
+    <!-- ========rating======== -->
+    <link rel="stylesheet" href="css/rating.css" type="text/css" title="Rating CSS">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/x-icon" href="images/mainlogo.png">
@@ -24,6 +31,35 @@
 
     <link rel="stylesheet" href="css/css/bootstrap.css">
     <link rel="stylesheet" href="css/css/style.css">
+    
+ <!-- ================rating================= -->  
+<% Double starPercentageRounded =(double)request.getAttribute("nbr_etoiles");%>
+
+  <style type="text/css">
+  .stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+ 
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+ 
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: <%=starPercentageRounded%>%;
+}
+ 
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
+  </style>  
 
   </head>
   <body>
@@ -37,21 +73,24 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="home.jsp" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="donate_form.jsp" class="nav-link">Donate</a></li>
+          <li class="nav-item"><a href="homeServlet" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="donate_form.jsp" class="nav-link">Donate</a></li>
           <li class="nav-item">
           <form action="AssociationServlet" method="POST">
-            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:white;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Association</button>         
+            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Associations</button>         
           </form>
           </li>
-         <form action="AssociationServlet" method="POST">
-         
-            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:white;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Favorites</button>         
+          <%
+          if(null != session.getAttribute("id_d")){
+        	  
+              %>
+         <form action="AssociationServlet" method="POST">   
+            <button value="AfficherAssociation" name="afficherAssociation" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Favorites</button>         
           </form>
-          </li>
+          </li><%} %>
           <li class="nav-item">
-          <form action="ProjetServlet" method="POST">
-            <button value="AfficherProjet" name="afficherProjets" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:white;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Projets</button>         
+          <form action="ProjetServlet" method="get">
+            <button name="afficherProjets" type="submit" data-toggle="tooltip" title="" style="background:transparent;border: none;width:150px;height:50px;font-size: 17px;margin-top:15px;cursor: pointer;">Projets</button>         
           </form>
           </li>
          <!--  <li class="nav-item"><a href="about.html" class="nav-link">About</a></li> -->
@@ -116,6 +155,12 @@
             <span class="date mb-4 d-block text-muted">Ville: ${a.ville}</span>
             <span class="date mb-4 d-block text-muted">Adresse: ${a.adresse}</span>
             <p>Qui somme nous ?: ${a.description}</p>
+            <div class="stars-outer">
+  			<div class="stars-inner"></div>
+		    </div>
+
+            
+           	 
            
          	 <% if(null != session.getAttribute("id_d")){
 				int id_d=(Integer)session.getAttribute("id_d");
@@ -129,23 +174,35 @@
               <!-- <input name ="ajoutAssofavo" type="image" src="images/heart2.png" border="0" alt="Submit" /> -->
             <button value="ajoutAssofavorites" name="ajoutAssofavo" type="submit" data-toggle="tooltip" title="" style="background:#851115;color:white;border: none;width:150px;height:40px;font-size: 15px;margin-top:15px;cursor: pointer;">Add to favourites</button>         
          	 </form>
-         	 <%} %>
+         	 <%} %>        	 
             
           </div>
         </div>
         
         </c:forEach>
         <hr>
-        
         <c:forEach items="${assoList}" var="a">
         <h2  style="color: red;margin-left: 35%">Commentaires De Nos Donateurs </h2>
-        <br>
-        
+        <% if(null != session.getAttribute("id_d")){
+				int id_d=(Integer)session.getAttribute("id_d");
+				
+			 %>
+        <h2  style="margin-left: 40%">
+        <section class="ratingStar">
+       		 <input type="radio" name="example" class="rating" value="1" />      
+        	 <input type="radio" name="example" class="rating" value="2" />
+        	 <input type="radio" name="example" class="rating" value="3" />
+        	 <input type="radio" name="example" class="rating" value="4" />
+        	 <input type="radio" name="example" class="rating" value="5" />
+    	</section></h2>
+		<%} %>
+
         <form action="CommentaireServlet" method="POST">
          <input name="id_asso" type="hidden" class="form-control" value="${a.id_asso}">
          	 <button value="ajoutCommentaire" name="afficherCommentaire" type="submit" data-toggle="tooltip" title="" style="background:transparent;color:#ded94e;border: none;width:150px;height:40px;font-size: 18px;margin-top:15px;cursor: pointer;margin-left:45%">View All</button>         
          </form>
          </c:forEach>
+         
         
          
       </div>
@@ -201,6 +258,29 @@
   <script src="js/js/aos.js"></script>
   <script src="js/js/jquery.animateNumber.min.js"></script>
   <script src="js/js/main.js"></script>
+  
+  	<!--  rating scripts -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+    <script type="text/javascript" src="js/rating.js"></script>
+    		 
+    		 <script type="text/javascript">
+        		$(function(){
+            	$('.ratingStar').rating(function(vote,event){
+            		
+                		//alert(vote);
+                		$.ajax({
+                    	url: 'ratingServlet?id_asso='+<%=(Integer)request.getAttribute("id_ass")%>+'&id_don='+<%=(Integer)session.getAttribute("id_d")%>,
+                    	type: "GET",
+                    	data: {rate: vote},
+                    	success: function () {
+                        //alert("success");
+                      	}
+                	});
+               		event.preventDefault();
+            		});
+        		});
+    		 </script>
+            
     
   </body>
 </html>

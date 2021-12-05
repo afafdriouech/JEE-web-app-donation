@@ -24,11 +24,7 @@ public class DonateurServlet extends HttpServlet{
      
      
      
-     @Override
-     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-         throws ServletException, IOException {
-         
-     }
+ 
      
          @Override
          protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -79,7 +75,7 @@ public class DonateurServlet extends HttpServlet{
                   d.setVille(ville);
                   d.setPassword(password);
                   gs.ajouter_Donateur(d);
-                  RequestDispatcher rd = request.getRequestDispatcher("AfficherDonateurs.jsp");
+                  RequestDispatcher rd = request.getRequestDispatcher("login_don.jsp");
                   rd.forward(request, response);
               }catch(Exception e){
              	 
@@ -95,10 +91,10 @@ public class DonateurServlet extends HttpServlet{
                     HttpSession session = request.getSession(true);
                     request.setAttribute("id_d",id_d);
                     request.setAttribute("email", email);
-             		 RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+             		 RequestDispatcher dispatcher = request.getRequestDispatcher("/homeServlet");
              		 dispatcher.forward(request, response);
              	 } else {
-             		 System.out.print("errore somewhere");
+             		 System.out.print("error somewhere");
              		 RequestDispatcher dispatcher = request.getRequestDispatcher("login_don.jsp");
             		 dispatcher.forward(request, response);
              		 

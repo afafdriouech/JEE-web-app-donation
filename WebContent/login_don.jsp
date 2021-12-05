@@ -62,7 +62,7 @@
 				</div>
 			        <form action="DonateurServlet" method="POST" class="login100-form validate-form"  name="myform" onsubmit="return validate();">
 			            <span class="login100-form-title">
-					<a href="home.jsp" class="txt2" href="#">
+					<a href="homeServlet" class="txt2" href="#">
 					Go back home
 					<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></a>
 					<h5>Member Login</h5>
@@ -88,6 +88,7 @@
 					Login
 					</button>-->
 			            <input class="login100-form-btn" type="submit" name="logindonateur" value="Login">
+			            
 				</div> 
 			        <div class="text-center p-t-136">
 			            <a href="register_d.jsp" class="txt2" href="#">

@@ -6,7 +6,7 @@
 
 <% 
 session.invalidate(); //destroy session
-response.sendRedirect("home.jsp");
+response.sendRedirect("homeServlet");
 %>
 
 
